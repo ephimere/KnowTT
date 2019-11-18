@@ -9,10 +9,11 @@ target 'KnowTT' do
   pod 'Firebase/Core'
   pod 'Firebase/Auth'
   pod 'Firebase/Database'
+  pod 'Firebase/Firestore'
   pod 'Socket.IO-Client-Swift', '~> 14.0.0'
   pod 'SwiftSocket'
   pod 'SCLAlertView', :git => 'https://github.com/vikmeup/SCLAlertView-Swift'
   pod 'Canvas'
   pod 'JGProgressHUD'
-  pod 'TextFieldEffects' 
+  pod 'TextFieldEffects'
 end
