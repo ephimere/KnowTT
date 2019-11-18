@@ -114,9 +114,7 @@ class RegisterView: UIViewController{
                 hud.dismiss()
                 return
         }
-        
-        
-
+        //--REGISTER USER IN FIREBASE
         Auth.auth().createUser(withEmail: email, password: password) { (authResult, error) in
             /*
              if error == nil {//sign in outomatically after registering
@@ -141,15 +139,12 @@ class RegisterView: UIViewController{
             }
             guard (authResult?.user) != nil else { return }
         }
-        
-        
         //clean up for future ocassions
         userMail.text = ""
         userPassword.text = ""
         userConfirmPassword.text = ""
         //hide loader
         hud.dismiss()
-
     }
     
     

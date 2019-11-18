@@ -95,67 +95,22 @@ class RegisterSignView: UIViewController {
                     return
                 }
                 //--Email has been verified
-                //-Request SIGN in in OWN server
-                //Connect to OWN server
-                hud.show(in: self.view)
-                switch self.client!.connect(timeout: 10) {
-                case .success:
-                    print("\t[LOGIN REGISTER VIEW] Connected to host")
-                case .failure(let error):
-                    print("\t[LOGIN REGISTER VIEW] Could not connect to host")
-                    print(String(describing: error))
-                    SCLAlertView().showError("Error Signing in", subTitle: "Our servers are down at the moment, try again in a few minutes")
-                    hud.dismiss()
-                    //Sign out the user from firebase
-                    try! Auth.auth().signOut()
-                    return
-                }
                 
-                do{
-                    print("\t[LOGIN REGISTER VIEW] Sign out FIREBASE")
-                    try! Auth.auth().signOut()
-                    print("\t[LOGIN REGISTER VIEW] Performing Sign in")
-                    let exitRequest = UserNote()
-                    exitRequest.buildNote("CONNECT", self.userMail.text!, "", "", "")
-                    let json = exitRequest.getJson()
-                    let dataToSend = "\(json)"
-                    let response = self.sendJson(self, dataToSend)
-                    print("\t[LOGIN REGISTER VIEW] Response from server: \(response)")
-                    let jsonData = Data(response.utf8)
-                    let decoder = JSONDecoder()
-                    if(response != "[ERROR][sendJson]"){
-                        //Own server did respond
-                        let ackJsonDecoded = try decoder.decode(ACKRegisterDecodedStruct.self, from: jsonData)
-                        if(ackJsonDecoded.opCode == "CONNECT" && ackJsonDecoded.result == "ACK"){
-                            //server notified of sign in successfull
-                            print("\t[LOGIN REGISTER VIEW] server sign in sucessfull in own servers")
-                            
-                            Auth.auth().signIn(withEmail: email, password: password) { user, error in
-                                if let error = error, user == nil {
-                                    //Firebase Sign in Failed
-                                    SCLAlertView().showError("Error Signing in", subTitle: error.localizedDescription)
-                                    try! Auth.auth().signOut()
-                                    hud.dismiss()
-                                    return
-                                }else{//Firebase Sign in Success
-                                    print("\t[LOGIN REGISTER VIEW] server sign in sucessfull in firebase")
-                                    //-Go to user home
-                                    print("\t[LOGIN REGISTER VIEW] Going to user home...")
-                                    self.performSegue(withIdentifier: "RegisterSignToUserHome", sender: self)
-                                    hud.dismiss()
-                                }
-                            }
-                            
-                        }else if (ackJsonDecoded.opCode == "CONNECT" && ackJsonDecoded.result != "ACK"){
-                            //OWN server notified of error signing in
-                            print("\t[LOGIN REGISTER VIEW] server could not sign in")
-                            SCLAlertView().showError("Error Signing in", subTitle: "Our servers are down at the moment, try again in a few minutes")
-                            hud.dismiss()
-                            return 
-                        }
+                //--SIGN IN TO FIREBASE SERVERS
+                Auth.auth().signIn(withEmail: email, password: password) { user, error in
+                    if let error = error, user == nil {
+                        //Firebase Sign in Failed
+                        SCLAlertView().showError("Error Signing in", subTitle: error.localizedDescription)
+                        try! Auth.auth().signOut()
+                        hud.dismiss()
+                        return
+                    }else{//Firebase Sign in Success
+                        print("\t[LOGIN REGISTER VIEW] server sign in sucessfull in firebase")
+                        //-Go to user home
+                        print("\t[LOGIN REGISTER VIEW] Going to user home...")
+                        self.performSegue(withIdentifier: "RegisterSignToUserHome", sender: self)
+                        hud.dismiss()
                     }
-                } catch {
-                    print(error.localizedDescription)
                 }
             }
         }
