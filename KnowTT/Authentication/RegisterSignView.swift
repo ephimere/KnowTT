@@ -46,13 +46,8 @@ class RegisterSignView: UIViewController {
         }else{
             print("Firebase Debug: user \(Auth.auth().currentUser!.email!) is connected")
         }
-        //Invoking TCP client
-        client = TCPClient(address: "142.93.204.52", port: 8080)
     }
     //Actions from Storyboard
-
-
-    
     @IBAction func signInTouched(_ sender: Any) {
         guard //Take care of not long enough
             let email = userMail.text,
