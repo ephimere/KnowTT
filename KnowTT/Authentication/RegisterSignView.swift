@@ -15,7 +15,7 @@ import JGProgressHUD
 import SCLAlertView
 import SwiftSocket
 
-
+/*Starting brand new KnowTT*/
 
 class RegisterSignView: UIViewController {
     //Outlets
