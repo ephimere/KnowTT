@@ -13,8 +13,7 @@ import Canvas
 import SCLAlertView
 import JGProgressHUD
 import SCLAlertView
-import SwiftSocket
-
+import FirebaseFirestore
 /*Starting brand new KnowTT*/
 
 class RegisterSignView: UIViewController {
@@ -26,9 +25,6 @@ class RegisterSignView: UIViewController {
     
     var emailToVerify = ""
     var passToVerify = ""
-
-    //Essence of client
-    var client: TCPClient?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,6 +42,7 @@ class RegisterSignView: UIViewController {
         }else{
             print("Firebase Debug: user \(Auth.auth().currentUser!.email!) is connected")
         }
+        
     }
     //Actions from Storyboard
     @IBAction func signInTouched(_ sender: Any) {
@@ -121,7 +118,6 @@ class RegisterSignView: UIViewController {
         //get the destination controller and cast it to your detail class
         if(segue.identifier == "RegisterSignToUserHome"){
             let userHomeController  = segue.destination as?  UserHomeViewController
-            userHomeController?.client = self.client
         }
     }
     
@@ -133,32 +129,7 @@ class RegisterSignView: UIViewController {
         self.present(alert, animated: true, completion: nil)
     }
     
-    //NETWORKING FUNCTIONS
-    func sendJson(_ sender: Any, _ jsonString: String) -> String{
-        
-        if let response = sendData(string: jsonString, using: client!){
-            return response
-        }
-        return "[ERROR][sendJson]"
-    }
-    
-    //uses readResponse
-    private func sendData(string: String, using client: TCPClient) -> String? {
-        print("Iphone Sending Data . . .")
-        switch client.send(string: string) {
-        case .success:
-            print("The data has been succesfully sent")
-            return readResponse(from: client) //This is returning the string read from server
-        case .failure(let error):
-            print(String(describing: error))
-            return nil
-        }
-    }
-    
-    private func readResponse(from client: TCPClient) -> String? {
-        guard let response = client.read(1024*10, timeout: 10) else {return nil}
-        return String(bytes: response, encoding: .ascii)
-    }
+   
 }
 // Extension to hide keyboard when touched anywhere
 extension UIViewController {

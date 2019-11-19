@@ -11,7 +11,6 @@ import UIKit
 import FirebaseAuth
 import SCLAlertView
 import JGProgressHUD
-import SwiftSocket
 
 struct ACKRegisterDecodedStruct: Codable {
     var opCode: String
@@ -26,8 +25,7 @@ class RegisterView: UIViewController{
     
     @IBOutlet weak var verifyEmailButton: UIButton!
     var userRegistered = ""
-    //Essence of client
-    var client: TCPClient?
+    
     @IBOutlet weak var registerButton: UIButton!
     //Prepare to change status bar color
     override var preferredStatusBarStyle: UIStatusBarStyle {
