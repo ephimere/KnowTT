@@ -33,12 +33,15 @@ class RegisterView: UIViewController{
     }
     
     var style:UIStatusBarStyle = .default
-
+    
+    override func loadView() {
+        super.loadView()
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         //Fucntionality to hide keyboard
         self.hideKeyboardWhenTappedAround()
-        //Styling Register Butoon
+        //Styling Register Button
         registerButton.layer.cornerRadius = 15
         //Style status bar
         self.style = .lightContent
@@ -50,9 +53,7 @@ class RegisterView: UIViewController{
     }
     
     
-    @IBAction func goToLogin(_ sender: Any) {
-        self.performSegue(withIdentifier: "registerToSignRegister", sender: self)
-    }
+
     
     @IBAction func submitRegistration(_ sender: UIButton) {
         

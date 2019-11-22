@@ -114,6 +114,21 @@ class RegisterSignView: UIViewController {
         hud.dismiss()
     }
     
+    //Button to add new member
+    
+    @IBAction func newMemberTapped(_ sender: Any) {
+        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+        let registerVC = storyBoard.instantiateViewController(withIdentifier: "RegisterView") as? RegisterView
+        self.present(registerVC!, animated: true, completion: nil)
+    }
+    
+    
+    @IBAction func forgotPassWordTapped(_ sender: Any) {
+        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+        let forgotPassVC = storyBoard.instantiateViewController(withIdentifier: "forgotPassViewController") as? ForgotPassword
+        self.present(forgotPassVC!, animated: true, completion: nil)
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         //get the destination controller and cast it to your detail class
         if(segue.identifier == "RegisterSignToUserHome"){

@@ -11,7 +11,7 @@ import UIKit
 
 class UserFeedViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
     
-    var myNoteList = ["Hi, this is a racoon", "Hi this is another racoon", "Hi this is a boring racoon", "Rami is a racoon","Cris is also a racoon", "IV is full of racoooooooooooooooooooooooooooooooooooooooooons" ]
+    var myNoteList = ["Note 1", "Note 2","Note 3","Note 4","Note 5","Note 6","Note 7","Note 8","Note 9","Note 10","Note 11","Note 12","Note 13","Note 14"]
     
 
     
@@ -51,11 +51,7 @@ class UserFeedViewController: UIViewController, UITableViewDelegate, UITableView
         selectedNote = myNoteList[indexPath.row]
         performSegue(withIdentifier: "goToNoteDetailedView", sender: self)
     }
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        //get the destination controller and cast it to your detail class
-        let detailedNoteController  = segue.destination as!  NoteDetailedView
-        detailedNoteController.noteContent = selectedNote
-    }
+
     
     
     //Function is called each time user edits tableView
@@ -70,7 +66,7 @@ class UserFeedViewController: UIViewController, UITableViewDelegate, UITableView
     //This function handles
     @objc func populateTable (){
         PullUpToRefreshTabTitle.title = "Loading Knowts"
-        for i in 1...100000
+        for i in 1...1000
         {
             myNoteList.append("\(i)")
         }
