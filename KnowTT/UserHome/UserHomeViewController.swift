@@ -9,6 +9,8 @@
 import Foundation
 import UIKit
 import FirebaseAuth
+import Firebase
+import FirebaseFirestore
 import MapKit
 import SCLAlertView
 import JGProgressHUD
@@ -38,6 +40,9 @@ class UserHomeViewController: UIViewController, CLLocationManagerDelegate{
     @IBOutlet weak var tcpLog: UITextField!//This is for testing
     @IBOutlet weak var userLoggedInText: UILabel!
     @IBOutlet weak var userMap: MKMapView!
+    
+    //GET database reference
+    let db = Firestore.firestore()
     
     //LOCATION MANAGER
     let coordinatesManager = CLLocationManager()
@@ -106,10 +111,6 @@ class UserHomeViewController: UIViewController, CLLocationManagerDelegate{
     }
     
     @IBAction func addNoteTouched(_ sender: Any) {
-        //Set opcode
-        let opCode = "POST"
-        //Get userId
-        let userId = "\(userMail!)"
         //Get locations from user
         let coordinate =  CLLocationCoordinate2D(latitude: UserDefaults.standard.value(forKey: "LAT") as! CLLocationDegrees, longitude: UserDefaults.standard.value(forKey: "LON") as! CLLocationDegrees)
         let userLatitudeCoord = coordinate.latitude
@@ -124,23 +125,35 @@ class UserHomeViewController: UIViewController, CLLocationManagerDelegate{
         }
         alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler:{(action) in alert.dismiss(animated: true, completion: nil)}))
         // 3. Grab the value from the text field, and SEND IT TO SERVER
-        /*
-         alert.addAction(UIAlertAction(title: "Add Note", style: .default, handler:
-            {
-                [weak alert] (_) in
-                let userNoteRaw = alert?.textFields![0] // This is the user note
-                do {
-                    if(could post to firestore){
-                        self.pinNote(withText: userNote!, inLatitude: latitudeEffectiveValue, inLongitud: longitudeEffectiveValue)
-                    }else{
+        
+        // Add a new document with a generated ID
+        
+        
+        
+        alert.addAction(UIAlertAction(title: "Add Note", style: .default, handler:
+        {
+            
+            [weak alert] (_) in
+            let userInputForNote = alert?.textFields![0] // This is the user note
+            if(userInputForNote == nil){
+                SCLAlertView().showWarning("Could not post your note", subTitle: "WriteSomething")
+            }
+            do {
+                var ref: DocumentReference? = nil
+                ref = self.db.collection("users").addDocument(data: [
+                    "user": self.userMail!,
+                    "textNote": userInputForNote!.text,
+                    "Latitude": userLatitude,
+                    "Longitude": userLongitude
+                ]) { err in
+                    if err != nil {
                         SCLAlertView().showError("Could not post your note", subTitle: "Please try again in a few minutes")
+                    } else {
+                        SCLAlertView().showSuccess("Posted", subTitle: "ID: \(ref!.documentID)")
                     }
-                } catch {
-                    print(error.localizedDescription)
                 }
-                print(response)
-            }))
-         */
+            }
+        }))
         // 4. Present the alert.
         self.present(alert, animated: true, completion: nil)
     }
@@ -154,10 +167,7 @@ class UserHomeViewController: UIViewController, CLLocationManagerDelegate{
         annotation.subtitle = note
         userMap.addAnnotation(annotation)
     }
-    #warning ("This Function is for testing")
-    private func appendToTextField(string: String){
-        tcpLog.text = tcpLog.text?.appending("\n\(string)")
-    }
+
     //Track the user position in real time and display it on the map
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         //Update User Location
