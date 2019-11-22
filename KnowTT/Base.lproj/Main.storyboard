@@ -323,10 +323,7 @@
                                 <color key="barTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </toolbar>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" mapType="mutedStandard" showsUserLocation="YES" showsCompass="NO" showsPointsOfInterest="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C1V-tn-b6U">
-                                <rect key="frame" x="0.0" y="82" width="375" height="541"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="541" id="Pqa-ba-ISH"/>
-                                </constraints>
+                                <rect key="frame" x="0.0" y="44" width="375" height="579"/>
                             </mapView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -337,6 +334,7 @@
                             <constraint firstItem="RVr-hb-XLn" firstAttribute="leading" secondItem="Gg9-bi-xG5" secondAttribute="leading" id="NsG-00-FT6"/>
                             <constraint firstItem="Gg9-bi-xG5" firstAttribute="trailing" secondItem="hl9-3v-4WV" secondAttribute="trailing" constant="47" id="Ppg-yJ-2dN"/>
                             <constraint firstItem="C1V-tn-b6U" firstAttribute="bottom" secondItem="Gg9-bi-xG5" secondAttribute="bottom" constant="-44" id="S93-Ic-4Ce"/>
+                            <constraint firstItem="C1V-tn-b6U" firstAttribute="centerY" secondItem="JE9-wX-HrL" secondAttribute="centerY" id="ZY0-V7-kFo"/>
                             <constraint firstItem="hl9-3v-4WV" firstAttribute="top" secondItem="RVr-hb-XLn" secondAttribute="bottom" constant="18" id="cTM-aa-0J0"/>
                             <constraint firstItem="C1V-tn-b6U" firstAttribute="leading" secondItem="Gg9-bi-xG5" secondAttribute="leading" id="ecd-ey-TAR"/>
                             <constraint firstItem="RVr-hb-XLn" firstAttribute="trailing" secondItem="Gg9-bi-xG5" secondAttribute="trailing" id="fcF-wG-KOn"/>
@@ -356,7 +354,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JNB-wF-QcH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1940" y="1093"/>
+            <point key="canvasLocation" x="-1940" y="1092.5037481259371"/>
         </scene>
         <!--User Feed View Controller Table View Controller-->
         <scene sceneID="1mj-Gx-q51">
