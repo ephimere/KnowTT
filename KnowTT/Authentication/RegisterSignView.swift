@@ -35,14 +35,15 @@ class RegisterSignView: UIViewController {
         signInButton.layer.cornerRadius = 15
         Auth.auth().currentUser?.getIDTokenForcingRefresh(true)
         Auth.auth().currentUser?.reload()
-        
-        #warning ("used for testing purposes")
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
         if(Auth.auth().currentUser?.email == nil){
             print("Firebase Debug: No user connected")
         }else{
+            self.performSegue(withIdentifier: "RegisterSignToUserHome", sender: self)
             print("Firebase Debug: user \(Auth.auth().currentUser!.email!) is connected")
         }
-        
     }
     //Actions from Storyboard
     @IBAction func signInTouched(_ sender: Any) {

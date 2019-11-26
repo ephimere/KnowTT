@@ -136,12 +136,11 @@ class UserHomeViewController: UIViewController, CLLocationManagerDelegate{
             [weak alert] (_) in
             let userInputForNote = alert?.textFields![0] // This is the user note
             if(userInputForNote == nil){
-                SCLAlertView().showWarning("Could not post your note", subTitle: "WriteSomething")
+                SCLAlertView().showWarning("Could not post your note", subTitle: "Write something")
             }
             do {
                 var ref: DocumentReference? = nil
-                ref = self.db.collection("users").addDocument(data: [
-                    "user": self.userMail!,
+                ref = self.db.collection("users").document("\(self.userMail!)").collection("notes").addDocument(data: [
                     "textNote": userInputForNote!.text,
                     "Latitude": userLatitude,
                     "Longitude": userLongitude

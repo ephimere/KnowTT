@@ -43,7 +43,8 @@
 		40D1DA1B22234CEE00CD992A /* Icon-App-40x40@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40D1DA0B22234CEE00CD992A /* Icon-App-40x40@3x.png */; };
 		40D1DA1C22234CEE00CD992A /* Icon-App-29x29@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 40D1DA0C22234CEE00CD992A /* Icon-App-29x29@2x.png */; };
 		40D1DA2022234DF600CD992A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 40D1DA1F22234DF600CD992A /* Assets.xcassets */; };
-		E316EF872388784500BB6E57 /* UserFeedViewControllerTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E316EF862388784500BB6E57 /* UserFeedViewControllerTableViewController.swift */; };
+		E3B2A70F238D37520068F36E /* userFeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B2A70E238D37520068F36E /* userFeedViewController.swift */; };
+		E3B2A711238D8DAA0068F36E /* CellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3B2A710238D8DAA0068F36E /* CellTableViewCell.swift */; };
 		FC3ACCD2F28243820F9A4028 /* Pods_KnowTT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7670DE940EFA662EA59828F8 /* Pods_KnowTT.framework */; };
 /* End PBXBuildFile section */
 
@@ -89,7 +90,8 @@
 		40D1DA1F22234DF600CD992A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7670DE940EFA662EA59828F8 /* Pods_KnowTT.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_KnowTT.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A40AB0C1A07212B46C092E8A /* Pods-KnowTT.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-KnowTT.release.xcconfig"; path = "Target Support Files/Pods-KnowTT/Pods-KnowTT.release.xcconfig"; sourceTree = "<group>"; };
-		E316EF862388784500BB6E57 /* UserFeedViewControllerTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFeedViewControllerTableViewController.swift; sourceTree = "<group>"; };
+		E3B2A70E238D37520068F36E /* userFeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = userFeedViewController.swift; sourceTree = "<group>"; };
+		E3B2A710238D8DAA0068F36E /* CellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,7 +119,8 @@
 			children = (
 				4036DC11221A0A1900BD8671 /* UserHomeViewController.swift */,
 				40342B982226A8D500A8CF3B /* UserSettingsView.swift */,
-				E316EF862388784500BB6E57 /* UserFeedViewControllerTableViewController.swift */,
+				E3B2A70E238D37520068F36E /* userFeedViewController.swift */,
+				E3B2A710238D8DAA0068F36E /* CellTableViewCell.swift */,
 			);
 			path = UserHome;
 			sourceTree = "<group>";
@@ -367,10 +370,11 @@
 				4036DC12221A0A1900BD8671 /* UserHomeViewController.swift in Sources */,
 				408E465022193F9C00E98992 /* enhancingUIView.swift in Sources */,
 				4008FFC42219DCA200E2A361 /* RegisterView.swift in Sources */,
-				E316EF872388784500BB6E57 /* UserFeedViewControllerTableViewController.swift in Sources */,
 				4096295C222BB7DE009EAB43 /* CustomAnnotation.swift in Sources */,
+				E3B2A70F238D37520068F36E /* userFeedViewController.swift in Sources */,
 				408E46352217737100E98992 /* RegisterSignView.swift in Sources */,
 				4022810C221F869900096913 /* userNote.swift in Sources */,
+				E3B2A711238D8DAA0068F36E /* CellTableViewCell.swift in Sources */,
 				408E463B2217737100E98992 /* UCSellB.xcdatamodeld in Sources */,
 				408E46332217737100E98992 /* AppDelegate.swift in Sources */,
 			);

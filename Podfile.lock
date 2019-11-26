@@ -165,6 +165,8 @@ PODS:
     - BoringSSL-GRPC/Interface (= 0.0.3)
   - BoringSSL-GRPC/Interface (0.0.3)
   - Canvas (0.1.2)
+  - Firebase (6.13.0):
+    - Firebase/Core (= 6.13.0)
   - Firebase/Auth (6.13.0):
     - Firebase/CoreOnly
     - FirebaseAuth (~> 6.4.0)
@@ -173,6 +175,9 @@ PODS:
     - FirebaseAnalytics (= 6.1.6)
   - Firebase/CoreOnly (6.13.0):
     - FirebaseCore (= 6.4.0)
+  - Firebase/Database (6.13.0):
+    - Firebase/CoreOnly
+    - FirebaseDatabase (~> 6.1.2)
   - Firebase/Firestore (6.13.0):
     - Firebase/CoreOnly
     - FirebaseFirestore (~> 1.8.0)
@@ -204,6 +209,10 @@ PODS:
     - GoogleUtilities/Logger (~> 6.2)
     - nanopb (~> 0.3.901)
   - FirebaseCoreDiagnosticsInterop (1.1.0)
+  - FirebaseDatabase (6.1.2):
+    - FirebaseAuthInterop (~> 1.0)
+    - FirebaseCore (~> 6.0)
+    - leveldb-library (~> 1.22)
   - FirebaseFirestore (1.8.0):
     - abseil/algorithm (= 0.20190808)
     - abseil/base (= 0.20190808)
@@ -221,6 +230,13 @@ PODS:
     - FirebaseCore (~> 6.0)
     - GoogleUtilities/Environment (~> 6.0)
     - GoogleUtilities/UserDefaults (~> 6.0)
+  - GeoFire (4.0.1):
+    - Firebase/Database (~> 6.0)
+  - Geofirestore (1.0.1):
+    - Firebase
+    - FirebaseCore
+    - FirebaseFirestore
+    - GeoFire
   - GoogleAppMeasurement (6.1.6):
     - GoogleUtilities/AppDelegateSwizzler (~> 6.0)
     - GoogleUtilities/MethodSwizzler (~> 6.0)
@@ -281,6 +297,7 @@ DEPENDENCIES:
   - Firebase/Auth
   - Firebase/Core
   - Firebase/Firestore
+  - Geofirestore (from `https://github.com/basementaspirations/GeoFirestore-iOS`, branch `firebase-upgrade`)
   - JGProgressHUD
   - SCLAlertView (from `https://github.com/vikmeup/SCLAlertView-Swift`)
   - TextFieldEffects
@@ -297,8 +314,10 @@ SPEC REPOS:
     - FirebaseCore
     - FirebaseCoreDiagnostics
     - FirebaseCoreDiagnosticsInterop
+    - FirebaseDatabase
     - FirebaseFirestore
     - FirebaseInstanceID
+    - GeoFire
     - GoogleAppMeasurement
     - GoogleDataTransport
     - GoogleDataTransportCCTSupport
@@ -312,10 +331,16 @@ SPEC REPOS:
     - TextFieldEffects
 
 EXTERNAL SOURCES:
+  Geofirestore:
+    :branch: firebase-upgrade
+    :git: https://github.com/basementaspirations/GeoFirestore-iOS
   SCLAlertView:
     :git: https://github.com/vikmeup/SCLAlertView-Swift
 
 CHECKOUT OPTIONS:
+  Geofirestore:
+    :commit: 1f7ff28dc0f652fb401ee58d88931ea18752b522
+    :git: https://github.com/basementaspirations/GeoFirestore-iOS
   SCLAlertView:
     :commit: 86ea7613c99cd4896765fabfa773b39b40bc8590
     :git: https://github.com/vikmeup/SCLAlertView-Swift
@@ -331,8 +356,11 @@ SPEC CHECKSUMS:
   FirebaseCore: 307ea2508df730c5865334e41965bd9ea344b0e5
   FirebaseCoreDiagnostics: af29e43048607588c050889d19204f4d7b758c9f
   FirebaseCoreDiagnosticsInterop: e9b1b023157e3a2fc6418b5cb601e79b9af7b3a0
+  FirebaseDatabase: 963515d232ded06f36f6ce830507c94551866170
   FirebaseFirestore: 7acd8c85ce6b8955cedc0b9be17d456473605a93
   FirebaseInstanceID: ebd2ea79ee38db0cb5f5167b17a0d387e1cc7b6e
+  GeoFire: 67b5276c561434b4e4c7ea567c2c4d64e711339c
+  Geofirestore: 46c079cf1ceeb03e77e7b2e4a3e65530527b6f95
   GoogleAppMeasurement: dfe55efa543e899d906309eaaac6ca26d249862f
   GoogleDataTransport: 67cc56f6280d1bc9d470285e851ec49ee9013dba
   GoogleDataTransportCCTSupport: f6ab1962e9dc05ab1fb938b795e5b310209edeec
@@ -346,6 +374,6 @@ SPEC CHECKSUMS:
   SCLAlertView: 9fea8ac145c0bd4989ef6abe1d3859b48f458986
   TextFieldEffects: 7d372f58aeaf9acd9626bbf962680aef926b085d
 
-PODFILE CHECKSUM: 98b2377866187df4e2f2b04758f58c482ba45a00
+PODFILE CHECKSUM: aa00ee0fe58d4775df13ce1436eb4d99e5a71eb6
 
 COCOAPODS: 1.8.4

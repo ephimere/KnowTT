@@ -13,4 +13,5 @@ target 'KnowTT' do
   pod 'Canvas'
   pod 'JGProgressHUD'
   pod 'TextFieldEffects'
+  pod 'Geofirestore', :git => 'https://github.com/basementaspirations/GeoFirestore-iOS', :branch => 'firebase-upgrade'
 end

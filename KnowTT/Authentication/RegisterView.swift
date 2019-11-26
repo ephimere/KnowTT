@@ -11,6 +11,8 @@ import UIKit
 import FirebaseAuth
 import SCLAlertView
 import JGProgressHUD
+import FirebaseFirestore
+
 
 struct ACKRegisterDecodedStruct: Codable {
     var opCode: String
@@ -26,6 +28,8 @@ class RegisterView: UIViewController{
     @IBOutlet weak var verifyEmailButton: UIButton!
     var userRegistered = ""
     
+    //GET database reference
+    let db = Firestore.firestore()
     @IBOutlet weak var registerButton: UIButton!
     //Prepare to change status bar color
     override var preferredStatusBarStyle: UIStatusBarStyle {
@@ -86,14 +90,14 @@ class RegisterView: UIViewController{
                 return
         }
         //Control it is a UCSB email
-        guard
+        /*guard
             isValidEmail(testStr: email) == true
             else {
                 SCLAlertView().showWarning("Invalid Email", subTitle: "You need to have a UCSB email to register")
                 //hide loader
                 hud.dismiss()
                 return
-        }
+        }*/
         //Check if passwords match
         guard
             userPassword.text == userConfirmPassword.text
@@ -128,6 +132,19 @@ class RegisterView: UIViewController{
                     if error != nil { //ERROR
                         SCLAlertView().showError("Email Verification", subTitle: "We could not send the verification email")
                     }else{//NO ERROR
+                        do {
+                            //add user to user collection
+                            self.db.collection("users").document("\(email)").setData(
+                                [
+                                    "userMail": email
+                                ]) { err in
+                                if err != nil {
+                                    print("error creating new user in document users")
+                                } else {
+                                    print("user succesfully added to database(not authentication)")
+                                }
+                            }
+                        }
                         //Tell user to vericication email has been sent
                         SCLAlertView().showInfo("Verification email  sent", subTitle: "Check your inbox to find the verification E-mail")
                         //Show user that the registration has been completed
