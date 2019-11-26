@@ -66,17 +66,6 @@ class UserHomeViewController: UIViewController, CLLocationManagerDelegate{
        self.style = .lightContent
     }
     override func viewDidLoad() {
-        #warning ("used for testing purposes")
-        if(Auth.auth().currentUser?.email == nil){
-            print("Firebase Debug: No user connected")
-        }else{
-            print("Firebase Debug: user \(Auth.auth().currentUser!.email!) is connected")
-        }
-        /********************/
-        //Start the method were we request nearby notes to the server every X time
-        #warning ("This to be built later TODO...")
-        //scheduledTimerWithTimeInterval()
-        /********************/
         //Change status bar color
         self.style = .lightContent
         //Ask user to start tracking his position
@@ -92,6 +81,10 @@ class UserHomeViewController: UIViewController, CLLocationManagerDelegate{
         userLoggedInText.text = "Welcome \(userMail ?? userDefault) !"
         super.viewDidLoad()
     
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.tabBarController?.tabBar.tintColor = #colorLiteral(red: 0.9932168126, green: 0.6548400521, blue: 0.0002115537791, alpha: 1)
     }
     
     @IBAction func goToLogOut(_ sender: Any) {

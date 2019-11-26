@@ -45,6 +45,7 @@ class RegisterSignView: UIViewController {
             print("Firebase Debug: user \(Auth.auth().currentUser!.email!) is connected")
         }
     }
+    
     //Actions from Storyboard
     @IBAction func signInTouched(_ sender: Any) {
         guard //Take care of not long enough
