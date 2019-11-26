@@ -362,7 +362,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Gg9-bi-xG5"/>
                     </view>
-                    <tabBarItem key="tabBarItem" image="mapIcon32px" id="hx8-kZ-iE5">
+                    <tabBarItem key="tabBarItem" image="map.fill" catalog="system" id="hx8-kZ-iE5">
                         <color key="badgeColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBarItem>
                     <connections>
@@ -430,7 +430,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="OoD-68-6uJ"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" image="userIcon32px" id="F68-7U-x3Z"/>
+                    <tabBarItem key="tabBarItem" title="" image="person.fill" catalog="system" id="F68-7U-x3Z"/>
                     <navigationItem key="navigationItem" id="5ki-5C-kJQ"/>
                     <connections>
                         <outlet property="logOutButton" destination="K6L-Sp-xbX" id="Ofd-u0-C20"/>
@@ -438,7 +438,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NQZ-dH-7za" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2082" y="1898"/>
+            <point key="canvasLocation" x="-1870" y="1898"/>
         </scene>
         <!--Register View-->
         <scene sceneID="ASf-YG-aKp">
@@ -731,7 +731,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="zcF-KS-eoI"/>
                     </view>
-                    <tabBarItem key="tabBarItem" image="feed" id="7pB-8K-4oe"/>
+                    <tabBarItem key="tabBarItem" image="flame" catalog="system" id="7pB-8K-4oe"/>
                     <connections>
                         <outlet property="distanceSlider" destination="ns2-3G-zy5" id="ZhG-mm-EMd"/>
                         <outlet property="distanceSliderLabel" destination="q8D-Il-jtP" id="daW-6j-5dM"/>
@@ -746,9 +746,12 @@
     <resources>
         <image name="backgroundKnowttOrangeYellow" width="1080" height="1920"/>
         <image name="feed" width="32" height="32"/>
+        <image name="flame" catalog="system" width="54" height="64"/>
         <image name="iconfinder_back_172570-2" width="32" height="32"/>
+        <image name="map.fill" catalog="system" width="64" height="56"/>
         <image name="mapIcon32px" width="32" height="32"/>
         <image name="onlyLogoKnowTOrange" width="481" height="292"/>
+        <image name="person.fill" catalog="system" width="64" height="60"/>
         <image name="userIcon32px" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
