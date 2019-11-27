@@ -133,6 +133,7 @@ class UserHomeViewController: UIViewController, CLLocationManagerDelegate{
                 SCLAlertView().showWarning("Could not post your note", subTitle: "Write something")
             }
             do {
+                //save note under a collection dedicated for notes from posting user
                 var ref: DocumentReference? = nil
                 ref = self.db.collection("users").document("\(self.userMail!)").collection("notes").addDocument(data: [
                     "textNote": userInputForNote!.text!,
@@ -143,17 +144,48 @@ class UserHomeViewController: UIViewController, CLLocationManagerDelegate{
                     if err != nil {
                         SCLAlertView().showError("Could not post your note", subTitle: "Please try again in a few minutes")
                     } else {
-                        //Give a geofireLocarion to our document
+                        //Give a geofireLocarion to our document using reference
                         let geoFirestoreRef = self.db.collection("users").document("\(self.userMail!)").collection("notes")
                         let geoFirestore = GeoFirestore(collectionRef: geoFirestoreRef)
-                        geoFirestore.setLocation(location: CLLocation(latitude: 37.7853889, longitude: -122.4056973), forDocumentWithID: "\(ref!.documentID)") { (error) in
+                        geoFirestore.setLocation(location: CLLocation(latitude: (self.coordinatesManager.location?.coordinate.latitude)!, longitude: (self.coordinatesManager.location?.coordinate.latitude)!), forDocumentWithID: "\(ref!.documentID)") { (error) in
                                 if (error != nil) {
                                     print("An error occured: \(String(describing: error))")
                                 } else {
                                     print("Saved location successfully!")
                                 }
                             }
-                        SCLAlertView().showSuccess("Posted", subTitle: "ID: \(ref!.documentID)")
+                        //save in collection of notes
+                        let date = Date()
+                        
+                        var notesRef: DocumentReference? = nil
+                        notesRef = self.db.collection("notes").addDocument(data: [
+                            "user:": "\(self.userMail!)",
+                            "textNote": userInputForNote!.text!,
+                            "day": Calendar.current.component(.day, from: date),
+                            "month": Calendar.current.component(.month, from: date),
+                            "year": Calendar.current.component(.year, from: date),
+                            "hour": Calendar.current.component(.hour, from: date),
+                            "minute": Calendar.current.component(.minute, from: date),
+                            "second": Calendar.current.component(.second, from: date)
+                        ])
+                        { err in
+                            if err != nil {
+                                SCLAlertView().showError("Could not post your note", subTitle: "Please try again in a few minutes")
+                            } else {
+                                //Give a geofireLocarion to our document
+                                let geoFirestoreRef = self.db.collection("notes")
+                                let geoFirestore = GeoFirestore(collectionRef: geoFirestoreRef)
+                                geoFirestore.setLocation(location: CLLocation(latitude: (self.coordinatesManager.location?.coordinate.latitude)!, longitude: (self.coordinatesManager.location?.coordinate.latitude)!), forDocumentWithID: "\(notesRef!.documentID)") { (error) in
+                                        if (error != nil) {
+                                            print("An error occured: \(String(describing: error))")
+                                        } else {
+                                            print("succesfully added location to note in notes collection under home directory")
+                                        }
+                                    }
+                                
+                                SCLAlertView().showSuccess("Posted", subTitle: "ID: \(ref!.documentID)")
+                            }
+                        }
                     }
                 }
             }
@@ -161,7 +193,32 @@ class UserHomeViewController: UIViewController, CLLocationManagerDelegate{
         // 4. Present the alert.
         self.present(alert, animated: true, completion: nil)
     }
-   
+   /*
+     func saveNoteUnderUser(underUser user:String, withNote note:String) -> String{
+        var ref: DocumentReference? = nil
+        ref = self.db.collection("users").document(user).collection("notes").addDocument(data: [
+           "textNote": note
+        ])
+        return "\(ref!)"
+    }
+    
+     func saveNoteUnderUserGeographically(underUser user:String, toCollection collection:String, atLocation loc:CLLocation, withNote note:String){
+        let ref = saveNoteUnderUser(underUser: user, withNote: note)
+        let geoFirestoreRef = self.db.collection("users").document("\(self.userMail!)").collection("notes")
+        let geoFirestore = GeoFirestore(collectionRef: geoFirestoreRef)
+        geoFirestore.setLocation(location: CLLocation(latitude: loc.coordinate.latitude, longitude: loc.coordinate.latitude), forDocumentWithID: ref) { (error) in
+                if (error != nil) {
+                    print("An error occured: \(String(describing: error))")
+                } else {
+                    print("Saved location successfully!")
+                }
+            }
+        
+    }
+    
+     func saveNoteInCollectionNotesGeographically(toCollection collection:String, atLatitude latitude:CLLocation, atLongitude longitude:CLLocation){
+        <#function body#>
+    }*/
     
     private func pinNote(withText note:String,  inLatitude latitude: Double, inLongitud longitude: Double){
         let location: CLLocationCoordinate2D = CLLocationCoordinate2DMake(latitude, longitude)

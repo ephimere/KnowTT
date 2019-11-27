@@ -129,7 +129,7 @@ class userFeedViewController: UIViewController, CLLocationManagerDelegate {
     print("\(noteGeoLocationsRef)")
         print("\(Auth.auth().currentUser!.email!)")
        let noteGeoLocations = GeoFirestore(collectionRef: noteGeoLocationsRef)
-       let circleQuery = noteGeoLocations.query(withCenter: center, radius: 5000)    // Create a GeoQuery based on a location
+       let circleQuery = noteGeoLocations.query(withCenter: center, radius: 10)    // Create a GeoQuery based on a location
        circleQuery.observeReady {
             print("All initial data has been loaded and events have been fired!")
             let queryHandle = circleQuery.observe(.documentEntered, with: { (key, location) in
