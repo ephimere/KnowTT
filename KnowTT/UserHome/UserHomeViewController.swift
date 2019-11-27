@@ -175,7 +175,7 @@ class UserHomeViewController: UIViewController, CLLocationManagerDelegate{
                                 //Give a geofireLocarion to our document
                                 let geoFirestoreRef = self.db.collection("notes")
                                 let geoFirestore = GeoFirestore(collectionRef: geoFirestoreRef)
-                                geoFirestore.setLocation(location: CLLocation(latitude: (self.coordinatesManager.location?.coordinate.latitude)!, longitude: (self.coordinatesManager.location?.coordinate.latitude)!), forDocumentWithID: "\(notesRef!.documentID)") { (error) in
+                                geoFirestore.setLocation(location: CLLocation(latitude: (self.coordinatesManager.location?.coordinate.latitude)!, longitude: (self.coordinatesManager.location?.coordinate.longitude)!), forDocumentWithID: "\(notesRef!.documentID)") { (error) in
                                         if (error != nil) {
                                             print("An error occured: \(String(describing: error))")
                                         } else {
