@@ -14,6 +14,7 @@ import FirebaseFirestore
 import MapKit
 import SCLAlertView
 import JGProgressHUD
+import Geofirestore
 
 struct GetNoteDecodedStruct: Codable {
     var creationTime: String
@@ -134,13 +135,24 @@ class UserHomeViewController: UIViewController, CLLocationManagerDelegate{
             do {
                 var ref: DocumentReference? = nil
                 ref = self.db.collection("users").document("\(self.userMail!)").collection("notes").addDocument(data: [
-                    "textNote": userInputForNote!.text,
+                    "textNote": userInputForNote!.text!,
                     "Latitude": userLatitude,
                     "Longitude": userLongitude
-                ]) { err in
+                ])
+                { err in
                     if err != nil {
                         SCLAlertView().showError("Could not post your note", subTitle: "Please try again in a few minutes")
                     } else {
+                        //Give a geofireLocarion to our document
+                        let geoFirestoreRef = self.db.collection("users").document("\(self.userMail!)").collection("notes")
+                        let geoFirestore = GeoFirestore(collectionRef: geoFirestoreRef)
+                        geoFirestore.setLocation(location: CLLocation(latitude: 37.7853889, longitude: -122.4056973), forDocumentWithID: "\(ref!.documentID)") { (error) in
+                                if (error != nil) {
+                                    print("An error occured: \(String(describing: error))")
+                                } else {
+                                    print("Saved location successfully!")
+                                }
+                            }
                         SCLAlertView().showSuccess("Posted", subTitle: "ID: \(ref!.documentID)")
                     }
                 }

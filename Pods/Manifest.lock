@@ -297,6 +297,7 @@ DEPENDENCIES:
   - Firebase/Auth
   - Firebase/Core
   - Firebase/Firestore
+  - GeoFire (>= 1.1)
   - Geofirestore (from `https://github.com/basementaspirations/GeoFirestore-iOS`, branch `firebase-upgrade`)
   - JGProgressHUD
   - SCLAlertView (from `https://github.com/vikmeup/SCLAlertView-Swift`)
@@ -374,6 +375,6 @@ SPEC CHECKSUMS:
   SCLAlertView: 9fea8ac145c0bd4989ef6abe1d3859b48f458986
   TextFieldEffects: 7d372f58aeaf9acd9626bbf962680aef926b085d
 
-PODFILE CHECKSUM: aa00ee0fe58d4775df13ce1436eb4d99e5a71eb6
+PODFILE CHECKSUM: f5616ced4e5db8edd2c3270a709e984f2f6962b5
 
 COCOAPODS: 1.8.4

@@ -628,6 +628,9 @@
                                     <navigationItem title="KnowT" id="Zuh-35-5pg">
                                         <barButtonItem key="leftBarButtonItem" systemItem="refresh" id="fDv-Te-S6l">
                                             <color key="tintColor" red="1" green="0.57810515169999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <connections>
+                                                <action selector="updateNearbyNotes:" destination="h37-mO-QiG" id="csS-Zr-I4c"/>
+                                            </connections>
                                         </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="2u6-NS-E96">
                                             <color key="tintColor" red="1" green="0.57810515169999999" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -731,7 +734,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="zcF-KS-eoI"/>
                     </view>
-                    <tabBarItem key="tabBarItem" image="flame" catalog="system" id="7pB-8K-4oe"/>
+                    <tabBarItem key="tabBarItem" title="" image="flame" catalog="system" id="7pB-8K-4oe"/>
                     <connections>
                         <outlet property="distanceSlider" destination="ns2-3G-zy5" id="ZhG-mm-EMd"/>
                         <outlet property="distanceSliderLabel" destination="q8D-Il-jtP" id="daW-6j-5dM"/>
